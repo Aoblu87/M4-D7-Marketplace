@@ -1,7 +1,3 @@
-
-
-
-
 // INPUT DI RICERCA
 let inputSearch = document.querySelector('#inputSearch')
 // PUNTO DOVE MOSTRARE TUTTI I PRODOTTI
@@ -26,8 +22,8 @@ let cancelItem = document.querySelector('#cancel-item')
 const totalPrice = document.querySelector('#totalPrice')
 
 
-let renderedResult=[]
-let results = []
+let allProducts = []
+
 let count = 0
 let countItem = 0
 let tot = 0
@@ -35,7 +31,31 @@ let allPrice = []
 
 
 
+window.onload = async function () {
+    try {
+        allProducts = await getProducts()
 
+        console.log(allProducts)
+
+
+        // Varibili per identificare nodi
+        inputSearch = document.querySelector('#inputSearch')
+        contentContainer = document.querySelector('#main-content')
+        addItems = document.querySelectorAll('.cartButton')
+        cancelItem = document.querySelector('#cancel-item')
+
+
+        // Per ogni bottone carrello aggiungo Add EventListeners
+        addItems.forEach(addToCart)
+
+        // Mostro tutti i prodotti nel DOM
+        displayResult(allProducts)
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+// Funzione che richiama tutti i prodotti
 async function getProducts() {
     try {
         const response = await fetch("https://striveschool-api.herokuapp.com/api/product/", {
@@ -52,63 +72,30 @@ async function getProducts() {
 }
 
 
-window.onload = async function () {
-    try {
-        const allProducts = await getProducts()
 
-
-        
-
-        // Varibili per identificare nodi
-        inputSearch = document.querySelector('#inputSearch')
-        contentContainer = document.querySelector('#main-content')
-        addItems = document.querySelectorAll('.cartButton')
-        cancelItem = document.querySelector('#cancel-item')
-
-
-        // Per ogni bottone carrello aggiungo Add EventListeners
-        addItems.forEach(addToCart)
-
-        // Mostro tutti i prodotti nel DOM
-        showResult(allProducts)
-
-    } catch (error) {
-        console.log(error)
-    }
-}
 
 // mostro nel DOM i risultati
-function showResult(data) {
-    results = data
+function displayResult(data) {
 
-
-    renderedResult = results.map(result => {
-        return /*html*/`
+    contentContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
                     <div class="col-md-3">
-                        <div class="card-book_ card h-100 border border-0">
-                        <a href="product.html?id=${result.asin}">
-                        <img src="${result.img}" class="card-img-top" alt="...">
+                        <div class="card h-100 border border-0">
+                        <a href="../product/product.html?id=${_id}">
+                        <img src="${imageUrl}" class="card-img-top" alt="${name}">
                             <div class="card-body">
-                                <h5 class="card-title text-center"> <a href="book.html?id=${result.asin}" class="link-underline link-underline-opacity-0 link-dark">
-                                ${result.title}</a></h5>
-                                <p class="card-text text-center">${result.price}€</p>
+                                <h5 class="card-title text-center"> <a href="../product/product.html?id=${_id}" class="link-underline link-underline-opacity-0 link-dark">
+                                ${name}</a></h5>
+                                <p class="card-text text-center">${price}€</p>
                 
                             </div>
                             <div class= "cart-overlay bg-light d-flex justify-content-evenly align-items-center">
                                 <button type="button" class="btn btn-transparent"> <i class="bi bi-suit-heart fs-3"></i></button>
-                                <button type="button" class="cartButton btn btn-transparent" data-asin='${result.asin}' >  <i class="bi bi-cart2 fs-3"></i> </button>
+                                <button type="button" class="cartButton btn btn-transparent" data-asin='${_id}' >  <i class="bi bi-cart2 fs-3"></i> </button>
                             </div>
                         </div>
                     </div>
-                
-                
-                
-                `
-
-
-    }).join('')
-    contentContainer.innerHTML += renderedResult
-
+                    `
+    ).join('')
 }
 
 
@@ -117,7 +104,15 @@ function showResult(data) {
 
 
 
-// AddEventListeners SUI BOTTONI PER AGGIUNGERE LIBRI
+
+
+
+
+
+
+
+
+// AddEventListeners SUI BOTTONI PER AGGIUNGERE PRODOTTI
 function addToCart(button) {
 
     button.addEventListener('click', event => {
@@ -129,10 +124,10 @@ function addToCart(button) {
 
 
         // Recupero libro dal bottone
-        const idBook = button.getAttribute('data-asin')
-        const bookSelected = booksResult.find(book => book.asin === idBook)
+        const idProduct = button.getAttribute('data-asin')
+        const productSelected = allProducts.find(item => item._id === idProduct)
 
-        console.log(itemsInTheCart.title)
+
 
         if (itemsInTheCart.quantity === 1) {
 
@@ -140,12 +135,12 @@ function addToCart(button) {
 
         } else { // creo array di tutti i libri selezionati
             itemsInTheCart.push({
-                ...bookSelected,
+                ...productSelected,
                 quantity: 1
             })
         }
         // creo array con tutti i prezzi selezionati
-        allPrice.push(bookSelected.price)
+        allPrice.push(productSelected.price)
         tot = allPrice.reduce((accumulator, currentValue) => {
             return accumulator + currentValue
         }, 0);
@@ -157,7 +152,7 @@ function addToCart(button) {
 
 
         // Mostro libro selezionato nel carrello
-        showListCart(bookSelected)
+        showListCart(productSelected)
 
         // Mostro conteggio del badge carrello nel main
         showBadgeTotal(count)
@@ -259,3 +254,6 @@ function showBadgeTotal(count) {
     }
 
 }
+
+
+
