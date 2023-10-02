@@ -1,0 +1,27 @@
+/* HEADER */
+.collapse.navbar-collapse {
+    flex-basis: 0;
+    flex-grow: 0;
+}
+
+/* SHOPPING CART */
+
+.cart-quantity{
+    width: 2rem;
+}
+.list-group-numbered>.list-group-item::before {
+    content: counters(section, ".") " ";
+    margin-inline-end: 1rem;
+}
+
+.card-body > .product-title{
+    font-size: 0.8rem;
+    margin-block-end: 0.5rem;
+
+}
+
+/* CONTEGGIO TOTALE CARRELLO SUL MAIN */
+
+.badge.hidden{
+    visibility: hidden;
+}
