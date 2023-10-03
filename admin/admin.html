@@ -138,16 +138,15 @@
 
                 </div>
                 <!-- CHANGE PRODUCT FORM -->
-                <!-- <div class="col-12 col-md-6">
-
-
-
+                <div class="col-12 col-md-6">
                     <h2 class="display-5 text-center">Change Product</h2>
-
-
 
                     <form class="border rounded p-4">
 
+                        <div class="col-12 mb-3">
+                            <label for="Id" class="fw-semibold">ID</label>
+                            <input type="text" class="form-control" id="Id" placeholder="3388884775h663">
+                        </div>
                         <div class="col-12 mb-3">
                             <label for="titleInput" class="fw-semibold">Title</label>
                             <input type="text" class="form-control" id="titleInput" placeholder="Guitar">
@@ -167,8 +166,8 @@
                         </div>
                         <div class="col-12 mb-3">
                             <label for="descriptionInput" class="fw-semibold">Description</label>
-                            <input type="text" class="form-control p-5" id="descriptionInput"
-                                placeholder="Fender Limited Edition Lightweight...">
+                            <textarea type="text" class="form-control" id="descriptionInput"
+                                placeholder="Fender Limited Edition Lightweight..." rows="3" cols="33"></textarea>
                         </div>
 
                         <button type="button" class="col-12 btn btn-dark" onclick="changeProduct(event)">Send</button>
@@ -176,16 +175,43 @@
 
                     </form>
 
-                </div> -->
-
-
-
-
+                </div>
 
                 <div id="products-container" class="col d-flex"></div>
             </div>
         </div>
     </main>
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                        <i class="bi bi-bootstrap-fill"></i>
+                    </a>
+                    <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3"><a href="/"
+                            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                            <i class="bi bi-twitter">
+                        </a></i></li>
+                    <li class="ms-3"><a href="/"
+                            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                            <i class="bi bi-instagram"></i>
+                        </a></li>
+                    <li class="ms-3"><a href="/"
+                            class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                            <i class="bi bi-facebook"></i>
+                        </a></li>
+                </ul>
+            </footer>
+        </div>
+    </footer>
+
+
+
 
 
 
