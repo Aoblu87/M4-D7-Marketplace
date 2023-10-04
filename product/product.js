@@ -2,40 +2,7 @@ const params = new URLSearchParams(window.location.search)
 const id = params.get('id')
 let detailsContainer = document.querySelector('#details-container')
 
-// window.onload = async function () {
 
-//     try {
-//         const product = await getDetailsProduct()
-
-//         detailsContainer = document.querySelector('#main-container')
-
-//         displayProduct(product)
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
-
-
-
-
-
-
-// async function getDetailsProduct() {
-//     try {
-//         const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${id}`, {
-
-//             headers: {
-//                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
-//             }
-//         })
-//         const jsonData = await response.json()
-//         return jsonData
-//     } catch (error) {
-//         console.log(error)
-//     }
-
-// }
 
 fetch(`https://striveschool-api.herokuapp.com/api/product/${id}`, {
     headers: {
