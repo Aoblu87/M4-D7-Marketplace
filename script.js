@@ -80,10 +80,12 @@ function displayResult(data) {
     contentContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
                                 <div class="row p-2 bg-white border rounded">
                                     <div class="col-md-3 mt-1">
-                                        <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}">
+                                        <a href="../product/product.html?id=${_id}">
+                                        <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}"></a>
                                     </div>
                                     <div class="col-md-6 mt-1">
-                                        <h5>${name}</h5>
+                                        <a href="../product/product.html?id=${_id}">
+                                        <h5>${name}</h5></a>
                                         <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
                                     </div>
                                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">
