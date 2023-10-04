@@ -16,7 +16,7 @@ let changeDescription = document.querySelector("#changeDescription")
 let productsContainer = document.querySelector('#products-container')
 
 // Tasto conferma cancella prodotto
-let deleteBtn = document.querySelectorAll('#delete-button')
+let deleteBtn = document.querySelectorAll('.delete-button')
 let confirmDeleteBtn = document.querySelector('#confirm-delete-btn')
 
 
@@ -30,10 +30,14 @@ window.onload = async function () {
 
         // Varibili per identificare nodi
 
-        let productsContainer = document.querySelector('#products-container')
+        productsContainer = document.querySelector('#products-container')
+        deleteBtn = document.querySelectorAll('.delete-button')
+
 
         // Mostro tutti i prodotti nel DOM
         displayProducts(allProducts)
+
+        deleteBtn.forEach(deleteProduct)
 
     } catch (error) {
         console.log(error)
@@ -53,10 +57,15 @@ async function getProducts() {
             }
         })
         const jsonData = await response.json()
+
+
+
         return jsonData
     } catch (error) {
         console.log(error)
     }
+
+
 }
 
 // mostro nel DOM i risultati
@@ -74,7 +83,7 @@ function displayProducts(data) {
                             </div>
                             <div class= "justify-content-evenly align-items-center">
                                 <button type="button" class="btn btn-transparent">Change</i></button>
-                                <button type="button" class="btn btn-primary" id="delete-button" data-id=${_id} data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                                <button type="button" class="delete-button btn btn-primary"  data-id="${_id}" >Delete</button>
                             </div>
                 
                     `
@@ -169,17 +178,19 @@ async function changeProduct(event) {
 
 
 
-deleteBtn.
-deleteBtn.addEventListener('click', (idProduct) => {
-    idProduct = deleteBtn.getAttribute('data-id')
-    deleteProduct(idProduct)
-}
-
-)
 
 
 // Funzione che elimina prodotto
-async function deleteProduct(idProduct) {
+async function deleteProduct(button) {
+
+    button.addEventListener('click', () => {
+
+        const idProduct = button.getAttribute('data-id')
+        console.log(idProduct)
+        return
+    })
+
+
 
 
     const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${idProduct}`, {
@@ -188,12 +199,12 @@ async function deleteProduct(idProduct) {
             "Content-type": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
         }
-        
+
     })
 
-    deleteBtn = document.querySelector('#delete-button')
+    deleteBtn = document.querySelectorAll('.delete-button')
 
-    
+
 
 
     if (response.ok) {
@@ -204,7 +215,17 @@ async function deleteProduct(idProduct) {
     } else {
         console.error("Delete not complete")
     }
+
 }
+
+
+
+
+
+
+
+
+
 
 // <!-- Modal -->
 //                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
