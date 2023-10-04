@@ -93,92 +93,135 @@
     </sidebar>
     <!------- MAIN -->
     <main>
-        <div class="container d-flex justify-content-center mt-5">
-            <div class="row">
-
-                <!-- ADD PRODUCTS FORM -->
-                <div class="col-12 col-md-6 position-sticky ">
+        <div class="container d-flex flex-column  mt-5">
+            <div class="row flex-column mb-5 mt-3">
 
 
+                <!-- ADD PRODUCT FORM  -->
+                <div class="col-12 d-flex justify-content-center">
 
-                    <h2 class="display-5 text-center">Add Product</h2>
-
-
-
-                    <form class="border rounded p-4">
-
-                        <div class="col-12 mb-3">
-                            <label for="titleInput" class="fw-semibold">Title</label>
-                            <input type="text" class="form-control" id="titleInput" placeholder="Guitar">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="imageUrl" class="fw-semibold">Image</label>
-                            <input type="url" class="form-control" id="imageUrl"
-                                placeholder="https://images.pexels.com/photos/...">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="brandInput" class="fw-semibold">Brand</label>
-                            <input type="text" class="form-control" id="brandInput" placeholder="Fender">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="priceInput" class="fw-semibold">Price</label>
-                            <input type="number" class="form-control" id="priceInput" placeholder="3000€">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="descriptionInput" class="fw-semibold">Description</label>
-                            <input type="text" class="form-control p-5" id="descriptionInput"
-                                placeholder="Fender Limited Edition Lightweight...">
-                        </div>
-
-                        <button type="button" class="col-12 btn btn-dark" onclick="addProduct(event)">Add
-                            Product</button>
-
-
-                    </form>
-
+                    <button id="add-btn" class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#add-product" aria-controls="add-product">Add Product</button>
                 </div>
+
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+                    id="add-product" aria-labelledby="add-productLabel">
+                    <div class="offcanvas-header">
+                        <h2 class="offcanvas-title" id="add-productLabel">Add Product</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="col-12 position-sticky ">
+
+                            <form class="border rounded p-4">
+
+                                <div class="col-12 mb-3">
+                                    <label for="titleInput" class="fw-semibold">Title</label>
+                                    <input type="text" class="form-control" id="titleInput" placeholder="Guitar">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="imageUrl" class="fw-semibold">Image</label>
+                                    <input type="url" class="form-control" id="imageUrl"
+                                        placeholder="https://images.pexels.com/photos/...">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="brandInput" class="fw-semibold">Brand</label>
+                                    <input type="text" class="form-control" id="brandInput" placeholder="Fender">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="priceInput" class="fw-semibold">Price</label>
+                                    <input type="number" class="form-control" id="priceInput" placeholder="3000€">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="descriptionInput" class="fw-semibold">Description</label>
+                                    <input type="text" class="form-control p-5" id="descriptionInput"
+                                        placeholder="Fender Limited Edition Lightweight...">
+                                </div>
+
+                                <button type="button" class="col-12 btn btn-dark" onclick="addProduct(event)">Add
+                                    Product</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- CHANGE PRODUCT FORM -->
-                <div class="col-12 col-md-6">
-                    <h2 class="display-5 text-center">Change Product</h2>
 
-                    <form class="border rounded p-4">
+                <div class="col">
 
-                        <div class="col-12 mb-3">
-                            <label for="id" class="fw-semibold">ID</label>
-                            <input type="text" class="form-control" id="id" placeholder="3388884775h663">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="changeTitle" class="fw-semibold">Title</label>
-                            <input type="text" class="form-control" id="changeTitle" placeholder="Guitar">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="changeImageUrl" class="fw-semibold">Image</label>
-                            <input type="url" class="form-control" id="changeImageUrl"
-                                placeholder="https://images.pexels.com/photos/...">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="changeBrand" class="fw-semibold">Brand</label>
-                            <input type="text" class="form-control" id="changeBrand" placeholder="Fender">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="changePrice" class="fw-semibold">Price</label>
-                            <input type="number" class="form-control" id="changePrice" placeholder="3000€">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="changeDescription" class="fw-semibold">Description</label>
-                            <textarea type="text" class="form-control" id="changeDescription"
-                                placeholder="Fender Limited Edition Lightweight..." rows="3" cols="33"></textarea>
-                        </div>
-
-                        <button type="button" class="col-12 btn btn-dark" onclick="changeProduct(event)">Send</button>
-
-
-                    </form>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#change-product" aria-controls="change-product">Change Product</button>
 
                 </div>
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+                    id="change-product" aria-labelledby="change-productLabel">
+                    <div class="offcanvas-header">
+                        <h2 class="offcanvas-title" id="change-productLabel">Change Product</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="col-12">
+                            
 
-                <div id="products-container" class="col d-flex"></div>
+                            <form class="border rounded p-4">
+
+                                <div class="col-12 mb-3">
+                                    <label for="id" class="fw-semibold">ID</label>
+                                    <input type="text" class="form-control" id="id" placeholder="3388884775h663">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="changeTitle" class="fw-semibold">Title</label>
+                                    <input type="text" class="form-control" id="changeTitle" placeholder="Guitar">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="changeImageUrl" class="fw-semibold">Image</label>
+                                    <input type="url" class="form-control" id="changeImageUrl"
+                                        placeholder="https://images.pexels.com/photos/...">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="changeBrand" class="fw-semibold">Brand</label>
+                                    <input type="text" class="form-control" id="changeBrand" placeholder="Fender">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="changePrice" class="fw-semibold">Price</label>
+                                    <input type="number" class="form-control" id="changePrice" placeholder="3000€">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="changeDescription" class="fw-semibold">Description</label>
+                                    <textarea type="text" class="form-control" id="changeDescription"
+                                        placeholder="Fender Limited Edition Lightweight..." rows="3"
+                                        cols="33"></textarea>
+                                </div>
+
+                                <button type="button" class="col-12 btn btn-dark"
+                                    onclick="changeProduct(event)">Send</button>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
+
+
+
+            <div class="container mt-5 mb-5">
+
+                <div class="d-flex justify-content-center row">
+                    <div id="products-container" class="col-md-10">
+    
+    
+                    </div>
+                </div>
         </div>
     </main>
     <!-- FOOTER -->
@@ -229,4 +272,3 @@
 </body>
 
 </html>
-

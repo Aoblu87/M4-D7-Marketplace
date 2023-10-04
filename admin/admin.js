@@ -16,7 +16,7 @@ let changeDescription = document.querySelector("#changeDescription")
 let productsContainer = document.querySelector('#products-container')
 
 // Tasto conferma cancella prodotto
-let deleteBtn = document.querySelectorAll('.delete-button')
+let deleteBtn = document.querySelector('.delete-button')
 let confirmDeleteBtn = document.querySelector('#confirm-delete-btn')
 
 
@@ -37,7 +37,7 @@ window.onload = async function () {
         // Mostro tutti i prodotti nel DOM
         displayProducts(allProducts)
 
-        deleteBtn.forEach(deleteProduct)
+        
 
     } catch (error) {
         console.log(error)
@@ -58,12 +58,15 @@ async function getProducts() {
         })
         const jsonData = await response.json()
 
+        deleteBtn = document.querySelectorAll('.delete-button')
 
 
         return jsonData
     } catch (error) {
         console.log(error)
     }
+
+    deleteBtn = document.querySelectorAll('.delete-button')
 
 
 }
@@ -72,22 +75,27 @@ async function getProducts() {
 function displayProducts(data) {
 
     productsContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
-                    <div class="col-md-3">
-                        <div class="card h-100 border border-0">
-                        
-                            <img src="${imageUrl}" class="card-img-top" alt="${name}">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">${name}</h5>
-                                <p class="card-text text-center">${price}€</p>
-                
-                            </div>
-                            <div class= "justify-content-evenly align-items-center">
-                                <button type="button" class="btn btn-transparent">Change</i></button>
-                                <button type="button" class="delete-button btn btn-primary"  data-id="${_id}" >Delete</button>
-                            </div>
-                
+                                    <div class="row p-2 bg-white border rounded">
+                                        <div class="col-md-3 mt-1">
+                                            <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}">
+                                        </div>
+                                        <div class="col-md-6 mt-1">
+                                            <h5>${name}</h5>
+                                            <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
+                                        </div>
+                                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                            <div class="d-flex flex-row align-items-center">
+                                             <h4 class="mr-1">${price}€</h4>
+                                            </div>
+                                            <div class="d-flex flex-column mt-4">
+                                                <a class="btn btn-success btn-sm" href="../product/product.html?id=${_id}" role="button">Change</a>
+                                                <button class="btn btn-danger btn-sm mt-2" type="button">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
                     `
     ).join('')
+    deleteBtn = document.querySelectorAll('.delete-button')
 
 }
 
@@ -117,6 +125,7 @@ async function addProduct(event) {
     imageUrl = document.querySelector("#imageUrl")
     description = document.querySelector("#descriptionInput")
     brand = document.querySelector('#brandInput')
+    deleteBtn = document.querySelectorAll('.delete-button')
 
 
     if (response.ok) {
@@ -160,6 +169,7 @@ async function changeProduct(event) {
     changePrice = document.querySelector("#changePrice")
     changeImageUrl = document.querySelector("#changeImageUrl")
     changeDescription = document.querySelector("#changeDescription")
+    deleteBtn = document.querySelectorAll('.delete-button')
 
 
     if (response.ok) {
@@ -178,45 +188,53 @@ async function changeProduct(event) {
 
 
 
-
+let idProduct
 
 // Funzione che elimina prodotto
 async function deleteProduct(button) {
 
-    button.addEventListener('click', () => {
+    // button.addEventListener('click', () => {
 
-        const idProduct = button.getAttribute('data-id')
-        console.log(idProduct)
-        return
-    })
+    //     const idProduct = button.getAttribute('data-id')
+    //     console.log(idProduct)
+    //     return
+    // })
+    // for (button of deleteBtn) {
 
+    //     const idProduct = button.getAttribute('data-id')
 
+    //     console.log(idProduct)
+button.addEventListener('click', (event) =>{
+    idProduct = event.getAttribute('data-id')
 
-
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${idProduct}`, {
+    
+})
+    console.log(idProduct)
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${_id}`, {
         method: "DELETE",
         headers: {
             "Content-type": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
         }
-
+        
     })
-
+    
     deleteBtn = document.querySelectorAll('.delete-button')
-
-
-
-
+    
+    
+    
+    
     if (response.ok) {
-
+        
         const data = await getProducts()
-        displayProducts(data)
-        confirm('Delete Successfully')
-    } else {
-        console.error("Delete not complete")
+            displayProducts(data)
+            confirm('Delete Successfully')
+        } else {
+            console.error("Delete not complete")
+        }
+
     }
 
-}
 
 
 

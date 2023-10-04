@@ -78,25 +78,31 @@ async function getProducts() {
 function displayResult(data) {
 
     contentContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
-                    <div class="col-md-3">
-                        <div class="card h-100 border border-0">
-                        <a href="../product/product.html?id=${_id}">
-                        <img src="${imageUrl}" class="card-img-top" alt="${name}">
-                            <div class="card-body">
-                                <h5 class="card-title text-center"> <a href="../product/product.html?id=${_id}" class="link-underline link-underline-opacity-0 link-dark">
-                                ${name}</a></h5>
-                                <p class="card-text text-center">${price}€</p>
-                
-                            </div>
-                            <div class= "cart-overlay bg-light d-flex justify-content-evenly align-items-center">
-                                <button type="button" class="btn btn-transparent"> <i class="bi bi-suit-heart fs-3"></i></button>
-                                <button type="button" class="cartButton btn btn-transparent" data-asin='${_id}' >  <i class="bi bi-cart2 fs-3"></i> </button>
-                            </div>
-                        </div>
-                    </div>
-                    `
-    ).join('')
-}
+                                <div class="row p-2 bg-white border rounded">
+                                    <div class="col-md-3 mt-1">
+                                        <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}">
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <h5>${name}</h5>
+                                        <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
+                                    </div>
+                                    <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                         <div class="d-flex flex-row align-items-center">
+                                            <h4 class="mr-1">${price}€</h4>
+                                        </div>
+                                        <div class="d-flex flex-column mt-4">
+                                            <a class="btn btn-primary btn-sm" href="../product/product.html?id=${_id}" role="button">Details</a>
+                                            <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                `
+                ).join('')
+            }
+                                        
+
+                                                
+        
 
 
 
@@ -257,3 +263,21 @@ function showBadgeTotal(count) {
 
 
 
+// HTML Display Card
+
+// <div class="col-md-3">
+//                         <div class="card h-100 border border-0">
+//                         <a href="../product/product.html?id=${_id}">
+//                         <img src="${imageUrl}" class="card-img-top" alt="${name}">
+//                             <div class="card-body">
+//                                 <h5 class="card-title text-center"> <a href="../product/product.html?id=${_id}" class="link-underline link-underline-opacity-0 link-dark">
+//                                 ${name}</a></h5>
+//                                 <p class="card-text text-center">${price}€</p>
+                
+//                             </div>
+//                             <div class= "cart-overlay bg-light d-flex justify-content-evenly align-items-center">
+//                                 <button type="button" class="btn btn-transparent"> <i class="bi bi-suit-heart fs-3"></i></button>
+//                                 <button type="button" class="cartButton btn btn-transparent" data-asin='${_id}' >  <i class="bi bi-cart2 fs-3"></i> </button>
+//                             </div>
+//                         </div>
+//                     </div>
