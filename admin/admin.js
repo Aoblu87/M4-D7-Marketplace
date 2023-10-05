@@ -46,11 +46,14 @@ window.onload = async function () {
 
         // Mostro tutti i prodotti nel DOM
         displayProducts(allProducts)
-
+        .finally(() => {
+            productsContainer.querySelector("#loader").remove();
+        })
 
     } catch (error) {
         console.log(error)
     }
+
 
 }
 
@@ -68,10 +71,8 @@ async function getProducts() {
         })
         const jsonData = await response.json()
 
+      
 
-            .finally(() => {
-                productsContainer.querySelector("#loader").remove();
-            })
         return jsonData
     } catch (error) {
         console.log(error)
@@ -100,7 +101,7 @@ function displayProducts(data) {
                                             </div>
                                             <div class="d-flex flex-column mt-4">
                                                 <button class="btn btn-success btn-sm" data-bs-toggle="offcanvas"
-                                                data-bs-target="#change-product" aria-controls="change-product" onclick="fillForm(${_id}, name, price, imageUrl, description, brand)">Change</button>
+                                                data-bs-target="#change-product" aria-controls="change-product" onclick="fillForm(${price})">Change</button>
                                                 <button class="btn btn-danger btn-sm mt-2" type="button" onclick="deleteProduct('${_id}')">Delete</button>
                                             </div>
                                         </div>
@@ -155,7 +156,7 @@ async function addProduct(event) {
 
 // funzione che apre modale per modificare prodotti
 function fillForm(id, name, price, imageUrl, description, brand) {
-    idItem.value = id
+    // idItem.value = id
     changeTitle.value = name
     changePrice.value = price
     changeImageUrl.value = imageUrl
