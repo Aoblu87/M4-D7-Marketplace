@@ -1,0 +1,17 @@
+/* Favorites Icon */
+.bi:hover{
+cursor: pointer;
+}
+
+
+#favorite-unsaved:hover {
+    background-color: grey;
+
+}
+
+#favorite-saved{
+    display: block;
+    position: absolute;
+    inset: 16px 0 0 16px;
+    content:'';
+}
