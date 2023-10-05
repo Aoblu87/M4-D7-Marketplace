@@ -7,10 +7,11 @@ let brand = document.querySelector('#brandInput')
 
 // Varibili form cambia prodotto
 let idItem = document.querySelector('#id-item')
-let changeTitle = document.querySelector('#changeTitle')
-let changePrice = document.querySelector("#changePrice")
-let changeImageUrl = document.querySelector("#changeImageUrl")
-let changeDescription = document.querySelector("#changeDescription")
+let changeTitle = document.querySelector('#change-title')
+let changePrice = document.querySelector("#change-price")
+let changeImageUrl = document.querySelector("#change-image-url")
+let changeDescription = document.querySelector("#change-description")
+let changeBrand = document.querySelector("#change-brand")
 
 // Dove appendere il DOM
 let productsContainer = document.querySelector('#products-container > div')
@@ -46,13 +47,11 @@ window.onload = async function () {
         // Mostro tutti i prodotti nel DOM
         displayProducts(allProducts)
 
-            .finally(() => {
-                productsContainer.querySelector("#loader").remove();
-            })
 
     } catch (error) {
         console.log(error)
     }
+
 }
 
 
@@ -70,7 +69,9 @@ async function getProducts() {
         const jsonData = await response.json()
 
 
-
+            .finally(() => {
+                productsContainer.querySelector("#loader").remove();
+            })
         return jsonData
     } catch (error) {
         console.log(error)
@@ -99,7 +100,7 @@ function displayProducts(data) {
                                             </div>
                                             <div class="d-flex flex-column mt-4">
                                                 <button class="btn btn-success btn-sm" data-bs-toggle="offcanvas"
-                                                data-bs-target="#change-product" aria-controls="change-product" onclick="openModal('${_id},${name},${price},${imageUrl},${description}, ${brand}')">Change</button>
+                                                data-bs-target="#change-product" aria-controls="change-product" onclick="fillForm(${_id}, name, price, imageUrl, description, brand)">Change</button>
                                                 <button class="btn btn-danger btn-sm mt-2" type="button" onclick="deleteProduct('${_id}')">Delete</button>
                                             </div>
                                         </div>
@@ -107,7 +108,7 @@ function displayProducts(data) {
                     `
     ).join('')
 
-   
+
 }
 
 // Funzione che aggiunge prodotti 
@@ -153,18 +154,23 @@ async function addProduct(event) {
 }
 
 // funzione che apre modale per modificare prodotti
-function openModal(id, name, price, imageUrl, description, brand){
-
+function fillForm(id, name, price, imageUrl, description, brand) {
+    idItem.value = id
+    changeTitle.value = name
+    changePrice.value = price
+    changeImageUrl.value = imageUrl
+    changeDescription.value = description
+    changeBrand.value = brand
 
 
 }
 
 // Funzione che modifica prodotto
 async function changeProduct(event, id) {
-//  aggiunge pe none per non far cliccare
+    //  aggiunge pe none per non far cliccare
     event.preventDefault()
 
-    const response = await fetch('https://striveschool-api.herokuapp.com/api/product/'+id, {
+    const response = await fetch('https://striveschool-api.herokuapp.com/api/product/' + id, {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
@@ -179,13 +185,14 @@ async function changeProduct(event, id) {
             brand: changeBrand.value
         })
     })
-console.log(idItem.value)
+    console.log(idItem.value)
 
     idItem = document.querySelector('#id-item')
-    changeTitle = document.querySelector('#changeTitle')
-    changePrice = document.querySelector("#changePrice")
-    changeImageUrl = document.querySelector("#changeImageUrl")
-    changeDescription = document.querySelector("#changeDescription")
+    changeTitle = document.querySelector('#change-title')
+    changePrice = document.querySelector("#change-price")
+    changeImageUrl = document.querySelector("#change-image-url")
+    changeDescription = document.querySelector("#change-description")
+    changeBrand = document.querySelector('#change-brand')
 
 
     if (response.ok) {
@@ -212,12 +219,12 @@ async function deleteProduct(id) {
     const response = await fetch('https://striveschool-api.herokuapp.com/api/product/' + id, {
         method: "DELETE",
         headers: {
-           
+
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
         }
 
     })
-    if(!confirm("Are you sure to delete?")){
+    if (!confirm("Are you sure to delete?")) {
         return
     }
     if (response.ok) {
