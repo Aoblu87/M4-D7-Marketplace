@@ -22,7 +22,7 @@ fetch(`https://striveschool-api.herokuapp.com/api/product/${id}`, {
     .then(displayProduct)
     .finally(() => {
         detailsContainer.querySelector("#loader").remove();
-      });
+      })
 
 function displayProduct(data) {
 

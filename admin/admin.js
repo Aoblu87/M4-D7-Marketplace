@@ -6,22 +6,32 @@ let description = document.querySelector("#descriptionInput")
 let brand = document.querySelector('#brandInput')
 
 // Varibili form cambia prodotto
-let id = document.querySelector('#id')
+let idItem = document.querySelector('#id-item')
 let changeTitle = document.querySelector('#changeTitle')
 let changePrice = document.querySelector("#changePrice")
 let changeImageUrl = document.querySelector("#changeImageUrl")
 let changeDescription = document.querySelector("#changeDescription")
 
 // Dove appendere il DOM
-let productsContainer = document.querySelector('#products-container')
+let productsContainer = document.querySelector('#products-container > div')
+
+
 
 // Tasto conferma cancella prodotto
-let deleteBtn = document.querySelector('.delete-button')
 let confirmDeleteBtn = document.querySelector('#confirm-delete-btn')
 
 
 
 window.onload = async function () {
+
+    productsContainer.innerHTML = /*html*/ `
+    <div id="loader" class="loading p-5 mt-5">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+   
+`
     try {
         allProducts = await getProducts()
 
@@ -30,14 +40,15 @@ window.onload = async function () {
 
         // Varibili per identificare nodi
 
-        productsContainer = document.querySelector('#products-container')
-        deleteBtn = document.querySelectorAll('.delete-button')
+        productsContainer = document.querySelector('#products-container > div')
 
 
         // Mostro tutti i prodotti nel DOM
         displayProducts(allProducts)
 
-        
+            .finally(() => {
+                productsContainer.querySelector("#loader").remove();
+            })
 
     } catch (error) {
         console.log(error)
@@ -58,7 +69,6 @@ async function getProducts() {
         })
         const jsonData = await response.json()
 
-        deleteBtn = document.querySelectorAll('.delete-button')
 
 
         return jsonData
@@ -66,7 +76,6 @@ async function getProducts() {
         console.log(error)
     }
 
-    deleteBtn = document.querySelectorAll('.delete-button')
 
 
 }
@@ -74,13 +83,14 @@ async function getProducts() {
 // mostro nel DOM i risultati
 function displayProducts(data) {
 
-    productsContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
-                                    <div class="row p-2 bg-white border rounded">
+    productsContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description, brand }) => /*html*/`
+                                    <div id="_${_id}" class="row p-2 bg-white border rounded">
                                         <div class="col-md-3 mt-1">
                                             <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}">
                                         </div>
                                         <div class="col-md-6 mt-1">
                                             <h5>${name}</h5>
+                                            <p>${brand}</p>
                                             <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
                                         </div>
                                         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
@@ -88,15 +98,16 @@ function displayProducts(data) {
                                              <h4 class="mr-1">${price}€</h4>
                                             </div>
                                             <div class="d-flex flex-column mt-4">
-                                                <a class="btn btn-success btn-sm" href="../product/product.html?id=${_id}" role="button">Change</a>
-                                                <button class="btn btn-danger btn-sm mt-2" type="button">Delete</button>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="offcanvas"
+                                                data-bs-target="#change-product" aria-controls="change-product" onclick="openModal('${_id},${name},${price},${imageUrl},${description}, ${brand}')">Change</button>
+                                                <button class="btn btn-danger btn-sm mt-2" type="button" onclick="deleteProduct('${_id}')">Delete</button>
                                             </div>
                                         </div>
                                     </div>
                     `
     ).join('')
-    deleteBtn = document.querySelectorAll('.delete-button')
 
+   
 }
 
 // Funzione che aggiunge prodotti 
@@ -125,7 +136,6 @@ async function addProduct(event) {
     imageUrl = document.querySelector("#imageUrl")
     description = document.querySelector("#descriptionInput")
     brand = document.querySelector('#brandInput')
-    deleteBtn = document.querySelectorAll('.delete-button')
 
 
     if (response.ok) {
@@ -142,19 +152,26 @@ async function addProduct(event) {
     }
 }
 
-// Funzione che modifica prodotto
-async function changeProduct(event) {
+// funzione che apre modale per modificare prodotti
+function openModal(id, name, price, imageUrl, description, brand){
 
+
+
+}
+
+// Funzione che modifica prodotto
+async function changeProduct(event, id) {
+//  aggiunge pe none per non far cliccare
     event.preventDefault()
 
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${id.value}`, {
+    const response = await fetch('https://striveschool-api.herokuapp.com/api/product/'+id, {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
         },
         body: JSON.stringify({
-            _id: id.value,
+            _id: idItem.value,
             name: changeTitle.value,
             price: changePrice.value,
             imageUrl: changeImageUrl.value,
@@ -162,14 +179,13 @@ async function changeProduct(event) {
             brand: changeBrand.value
         })
     })
+console.log(idItem.value)
 
-
-    id = document.querySelector('#id')
+    idItem = document.querySelector('#id-item')
     changeTitle = document.querySelector('#changeTitle')
     changePrice = document.querySelector("#changePrice")
     changeImageUrl = document.querySelector("#changeImageUrl")
     changeDescription = document.querySelector("#changeDescription")
-    deleteBtn = document.querySelectorAll('.delete-button')
 
 
     if (response.ok) {
@@ -177,7 +193,7 @@ async function changeProduct(event) {
         const data = await getProducts()
         displayProducts(data)
 
-        for (const field of [id, changeTitle, changePrice, changeImageUrl, changeDescription]) {
+        for (const field of [idItem, changeTitle, changePrice, changeImageUrl, changeDescription]) {
             field.value = ''
         }
     } else {
@@ -188,52 +204,32 @@ async function changeProduct(event) {
 
 
 
-let idProduct
+
 
 // Funzione che elimina prodotto
-async function deleteProduct(button) {
+async function deleteProduct(id) {
 
-    // button.addEventListener('click', () => {
-
-    //     const idProduct = button.getAttribute('data-id')
-    //     console.log(idProduct)
-    //     return
-    // })
-    // for (button of deleteBtn) {
-
-    //     const idProduct = button.getAttribute('data-id')
-
-    //     console.log(idProduct)
-button.addEventListener('click', (event) =>{
-    idProduct = event.getAttribute('data-id')
-
-    
-})
-    console.log(idProduct)
-    const response = await fetch(`https://striveschool-api.herokuapp.com/api/product/${_id}`, {
+    const response = await fetch('https://striveschool-api.herokuapp.com/api/product/' + id, {
         method: "DELETE",
         headers: {
-            "Content-type": "application/json",
+           
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
         }
-        
-    })
-    
-    deleteBtn = document.querySelectorAll('.delete-button')
-    
-    
-    
-    
-    if (response.ok) {
-        
-        const data = await getProducts()
-            displayProducts(data)
-            confirm('Delete Successfully')
-        } else {
-            console.error("Delete not complete")
-        }
 
+    })
+    if(!confirm("Are you sure to delete?")){
+        return
     }
+    if (response.ok) {
+
+        const data = await getProducts()
+        displayProducts(data)
+        confirm('Delete Successfully')
+    } else {
+        console.error("Delete not complete")
+    }
+
+}
 
 
 

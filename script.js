@@ -1,7 +1,7 @@
 // INPUT DI RICERCA
 let inputSearch = document.querySelector('#inputSearch')
 // PUNTO DOVE MOSTRARE TUTTI I PRODOTTI
-let contentContainer = document.querySelector('#main-content')
+let contentContainer = document.querySelector('#main-content >div')
 
 // BOTTONE AGGIUNGI AL CARRELLO SULLA CARD
 let addItems = document.querySelectorAll('.cartButton')
@@ -32,7 +32,20 @@ let allPrice = []
 
 
 window.onload = async function () {
+
+    contentContainer.innerHTML = /*html*/ `
+    <div id="loader" class="loading p-5 mt-5">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+   
+`
+
+
     try {
+
+        
         allProducts = await getProducts()
 
         console.log(allProducts)
@@ -40,7 +53,7 @@ window.onload = async function () {
 
         // Varibili per identificare nodi
         inputSearch = document.querySelector('#inputSearch')
-        contentContainer = document.querySelector('#main-content')
+        contentContainer = document.querySelector('#main-content> div')
         addItems = document.querySelectorAll('.cartButton')
         cancelItem = document.querySelector('#cancel-item')
 
@@ -51,13 +64,19 @@ window.onload = async function () {
         // Mostro tutti i prodotti nel DOM
         displayResult(allProducts)
 
+        .finally(() => {
+            contentContainer.querySelector("#loader").remove();
+          })
+
     } catch (error) {
         console.log(error)
     }
 }
 // Funzione che richiama tutti i prodotti
 async function getProducts() {
+    
     try {
+        
         const response = await fetch("https://striveschool-api.herokuapp.com/api/product/", {
 
             headers: {
