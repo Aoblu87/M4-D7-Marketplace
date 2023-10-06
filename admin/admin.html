@@ -108,7 +108,7 @@
                     id="add-product" aria-labelledby="add-productLabel">
                     <div class="offcanvas-header">
                         <h2 class="offcanvas-title" id="add-productLabel">Add Product</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button"  class="closeX btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <div class="col-12 position-sticky ">
@@ -138,7 +138,7 @@
                                         placeholder="Fender Limited Edition Lightweight...">
                                 </div>
 
-                                <button type="button" class="col-12 btn btn-dark" onclick="addProduct(event)">Add
+                                <button type="button" class="confirm-btn col-12 btn btn-dark" onclick="addProduct(event)">Add
                                     Product</button>
 
                             </form>
@@ -158,18 +158,19 @@
                 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
                     id="change-product" aria-labelledby="change-productLabel">
                     <div class="offcanvas-header">
-                        <h2 class="offcanvas-title" id="change-productLabel">Change Product</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <h2 class="offcanvas-title" id="change-productLabel">Edit Product</h2>
+                        <button type="button"  class="closeX btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                        <div id="form-change" class="col-12">
+                        <div class="col-12">
 
 
-                            <form class="border rounded p-4">
+                            <form id="form-change" class="border rounded p-4">
 
                                 <div class="col-12 mb-3">
                                     <label for="id" class="fw-semibold">ID</label>
-                                    <input type="text" class="form-control" id="id-item" placeholder="3388884775h663">
+                                    <!-- <input type="text" class="form-control" id="id-item" placeholder="3388884775h663"> -->
+                                    <p id="id-item"></p>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-title" class="fw-semibold">Title</label>
@@ -195,8 +196,10 @@
                                         cols="33"></textarea>
                                 </div>
 
-                                <button type="button" class="col-12 btn btn-dark"
+                                <div >
+                                    <button type="button" class="confirm-btn col-12 btn btn-dark"
                                     onclick="changeProduct(event)">Send</button>
+                                </div>
 
 
                             </form>

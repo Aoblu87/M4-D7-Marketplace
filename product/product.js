@@ -20,9 +20,12 @@ fetch(`https://striveschool-api.herokuapp.com/api/product/${id}`, {
 })
     .then(r => r.json())
     .then(displayProduct)
-    .finally(() => {
-        detailsContainer.querySelector("#loader").remove();
-      })
+
+    
+    // .finally(() => {
+        
+    //     detailsContainer.querySelector("#loader").remove()
+    // })
 
 function displayProduct(data) {
 
@@ -58,9 +61,9 @@ function displayProduct(data) {
                                     <hr>
                                     <div class="col d-flex justify-content-end ps-3 my-4">
                                         <p class="h3 m-0">${data.price} €</p>
-
+                                       
                                     </div>
-                                    <p class="card-text p-3"></p>
+                                    <p class="card-text p-3">${data.description}</p>
                                 <div class="col d-flex justify-content-end p-3">
                                     <button type="button" class="btn btn-dark">Add to Cart</button>
 
