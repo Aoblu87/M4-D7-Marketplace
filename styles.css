@@ -1,4 +1,4 @@
-main{
+main {
     min-height: 70vh;
 }
 
@@ -16,6 +16,17 @@ main{
 
 
 /* CARD */
+.img-product {
+    transition: scale 1s ease-in-out;
+}
+
+#card:hover {
+    scale: 1.03;
+    box-shadow: 0px 0px 16px 2px rgba(33, 37, 41, 0.76);
+    transition: scale 0.75s ease-in-out;
+
+}
+
 .card {
     position: relative;
 }
@@ -46,25 +57,15 @@ main{
 
 }
 
-.cart-overlay {
+.img-product {
 
-    visibility: hidden;
-    height: 13%;
-    box-shadow: 0px -5px 8px -3px grey;
-    position: absolute;
-    inset: 252px 0 0px 0px;
-
-
+    object-fit: cover;
+    aspect-ratio: 1;
 }
 
-.cart-overlay button {
-    cursor: pointer;
-}
 
-.card:hover .cart-overlay {
 
-    visibility: visible;
-}
+
 
 /* SHOPPING CART */
 

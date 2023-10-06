@@ -95,12 +95,12 @@ function displayProducts(data) {
     productsContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description, brand }) => /*html*/`
         <div id="_${_id}" class="row p-2 bg-white border rounded my-3">
         <div class="col-md-3 mt-1">
-        <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}">
+        <img class="img-product img-fluid img-responsive rounded product-image"src="${imageUrl}">
         </div>
         <div class="col-md-6 mt-1">
         <h5>${name}</h5>
         <p>${brand}</p>
-        <p class="text-justify para mb-0">${description}<br><br></p>
+        <p class="text-justify d-block text-truncate para mb-0">${description}<br><br></p>
         </div>
         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
         <div class="d-flex flex-row align-items-center">
@@ -156,6 +156,7 @@ async function addProduct(event) {
 
         const data = await getProducts()
         displayProducts(data)
+        alert('Successfully added!')
 
 
         for (const field of [title, price, imageUrl, description]) {
@@ -163,6 +164,8 @@ async function addProduct(event) {
         }
     } else {
         console.error("Cannot send")
+        alert('Something got wrong!')
+
     }
 }
 
@@ -227,13 +230,15 @@ async function changeProduct(event) {
 
         const data = await getProducts()
         displayProducts(data)
-        confirm('Successfully added!')
+        alert('Successfully edited!')
 
         for (const field of [idItem, changeTitle, changePrice, changeImageUrl, changeDescription]) {
             field.value = ''
         }
     } else {
         console.error("Something got wrong")
+        alert('Something got wrong!')
+
     }
 
 }

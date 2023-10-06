@@ -32,8 +32,8 @@ function displayProduct(data) {
     detailsContainer.innerHTML = /*html*/`
     
                 <div  class="card mb-3 p-3">
-                    <div class="row justify-content-between mt-2">
-                        <div class="col-3 d-flex align-items-center p-3">
+                    <div class="row justify-content-between mt-2 p-0">
+                        <div class="col-7 col-md-3 d-flex align-items-center p-md-3">
                             <a class="link-body-emphasis" href="../index.html">
                                     <i class="fs-3 bi bi-arrow-left"></i>
                             </a>
@@ -44,26 +44,26 @@ function displayProduct(data) {
 
                             </p>
                         </div>
-                        <div id="favorites-icon" class="col-1 d-flex position-relative fs-3 p-3">
+                        <div id="favorites-icon" class="col-2 d-flex position-relative fs-3 p-3">
 
                                 <i id="favorite-unsaved" class="bi bi-suit-heart"></i>
                                 <i id="favorite-saved" class="bi bi-suit-heart-fill d-none"></i>
                         </div>
                     </div>
-                    <div class="row g-0">
+                    <div class="row">
                         <div class="col-md-4">
-                            <img class="img-fluid" src="${data.imageUrl}" alt="${data.title}">
+                            <img class="img-product img-fluid rounded" src="${data.imageUrl}" alt="${data.title}">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body">
-                                    <h3 class="card-title p-3">${data.name}</h3>
-                                    <p class="card-title text-body-secondary ps-3">${data.brand}</p>
+                            <div class="card-body p-0 pt-2">
+                                    <h3 class="card-title">${data.name}</h3>
+                                    <p class="card-title text-body-secondary">${data.brand}</p>
                                     <hr>
-                                    <div class="col d-flex justify-content-end ps-3 my-4">
+                                    <div class="col d-flex justify-content-end my-4">
                                         <p class="h3 m-0">${data.price} €</p>
                                        
                                     </div>
-                                    <p class="card-text p-3">${data.description}</p>
+                                    <p class="card-text">${data.description}</p>
                                 <div class="col d-flex justify-content-end p-3">
                                     <button type="button" class="btn btn-dark">Add to Cart</button>
 

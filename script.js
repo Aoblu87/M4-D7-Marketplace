@@ -75,18 +75,18 @@ async function getProducts() {
 function displayResult(data) {
 
     contentContainer.innerHTML = data.map(({ _id, name, price, imageUrl, description }) => /*html*/`
-                                <div class="row p-2 bg-white border rounded">
+                                <div id="card" class="row p-2 bg-white border rounded my-3">
                                     <div class="col-md-3 mt-1">
                                         <a href="../product/product.html?id=${_id}">
-                                        <img class="img-fluid img-responsive rounded product-image"src="${imageUrl}"></a>
+                                        <img  class="img-product img-fluid img-responsive rounded product-image"src="${imageUrl}"></a>
                                     </div>
                                     <div class="col-md-6 mt-1">
-                                        <a href="../product/product.html?id=${_id}">
-                                        <h5>${name}</h5></a>
+                                        <a class="link-offset-2 link-underline link-underline-opacity-0 text-dark" href="../product/product.html?id=${_id}">
+                                        <h2>${name}</h2></a>
                                         <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
                                     </div>
                                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                         <div class="d-flex flex-row align-items-center">
+                                         <div class="d-flex flex-row align-items-center justify-content-end">
                                             <h4 class="mr-1">${price}€</h4>
                                         </div>
                                         <div class="d-flex flex-column mt-4">
