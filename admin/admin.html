@@ -16,43 +16,42 @@
 <body>
     <!-- HEADER -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
-        <nav class="navbar bg-dark" data-bs-theme="dark">
-            <div class="container-fluid justify-content-center py-3 mb-3">
-    
-                <a class="navbar-brand fs-1 me-1 me-md-4" href="../index.html">
-                    <i class="bi bi-shop"></i>
-                </a>
-                <div class="d-flex col-7">
-                    <input id="inputSearch" class="form-control me-2" type="text"
-                        placeholder="Cerca tra milioni di prodotti" aria-label="Search" id="floatingSearch">
-    
-    
-    
-                    <button id="buttonSearch" class="btn btn-outline-light bg-dark border border-0 ps-0 ps-md-2" type="button"
-                        onclick="search()"><i class="bi bi-search fs-3"></i></button>
-                </div>
-                <button type="button" class="btn btn-outline-light bg-dark border border-0 ps-0 ps-md-2"><i
-                        class="bi bi-suit-heart fs-3"></i></button>
-    
-                <button class="btn btn-outline-light bg-dark border border-0 position-relative px-0 ps-md-2" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <i class="bi bi-cart2 fs-3"></i>
-                    <span id="cart-count"
-                        class="badge hidden position-absolute top-0 start-100 translate-middle  rounded-pill bg-danger ">
-    
-                        <span class="visually-hidden">unread messages</span>
-                    </span>
+        <div class="container-fluid justify-content-center py-3 mb-3">
+
+            <a class="navbar-brand fs-1 me-1 me-md-4" href="../index.html">
+                <i class="bi bi-shop"></i>
+            </a>
+            <div class="d-flex col-7">
+                <input id="inputSearch" class="form-control me-2" type="text"
+                    placeholder="Cerca tra milioni di prodotti" aria-label="Search" id="floatingSearch">
+
+
+
+                <button id="buttonSearch" class="btn btn-outline-light bg-dark border border-0 ps-0 ps-md-2" type="button"
+                    onclick="search()"><i class="bi bi-search fs-3"></i></button>
+            </div>
+            <button type="button" class="btn btn-outline-light bg-dark border border-0 ps-0 ps-md-2"><i
+                    class="bi bi-suit-heart fs-3"></i></button>
+
+            <button class="btn btn-outline-light bg-dark border border-0 position-relative px-0 ps-md-2" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <i class="bi bi-cart2 fs-3"></i>
+                <span id="cart-count"
+                    class="badge hidden position-absolute top-0 start-100 translate-middle  rounded-pill bg-danger ">
+
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </button>
+            <div class="dropdown ps-md-2">
+                <button class="btn btn-outline-light bg-dark border border-0 dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person fs-3"></i>
                 </button>
-                <div class="dropdown ps-md-2">
-                    <button class="btn btn-outline-light bg-dark border border-0 dropdown-toggle" type="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person fs-3"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">User</a></li>
-                        <li><a class="dropdown-item" href="../admin/admin.html">Administrator</a></li>
-                    </ul>
-                </div>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">User</a></li>
+                    <li><a class="dropdown-item" href="../admin/admin.html">Administrator</a></li>
+                </ul>
+            </div>
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
                 aria-labelledby="offcanvasRightLabel">
@@ -117,24 +116,24 @@
 
                                 <div class="col-12 mb-3">
                                     <label for="titleInput" class="fw-semibold">Title</label>
-                                    <input type="text" class="form-control" id="titleInput" placeholder="Guitar">
+                                    <input required type="text" class="form-control" id="titleInput" placeholder="Guitar">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="imageUrl" class="fw-semibold">Image</label>
-                                    <input type="url" class="form-control" id="imageUrl"
+                                    <input required type="url" class="form-control" id="imageUrl"
                                         placeholder="https://images.pexels.com/photos/...">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="brandInput" class="fw-semibold">Brand</label>
-                                    <input type="text" class="form-control" id="brandInput" placeholder="Fender">
+                                    <input required  type="text" class="form-control" id="brandInput" placeholder="Fender">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="priceInput" class="fw-semibold">Price</label>
-                                    <input type="number" class="form-control" id="priceInput" placeholder="3000€">
+                                    <input  required type="number" class="form-control" id="priceInput" placeholder="3000€">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="descriptionInput" class="fw-semibold">Description</label>
-                                    <textarea type="text" class="form-control" id="descriptionInput"
+                                    <textarea required type="text" class="form-control" id="descriptionInput"
                                         placeholder="Fender Limited Edition Lightweight..."></textarea>
                                 </div>
 
@@ -174,24 +173,24 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-title" class="fw-semibold">Title</label>
-                                    <input type="text" class="form-control" id="change-title" placeholder="Guitar">
+                                    <input required type="text" class="form-control" id="change-title" placeholder="Guitar">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-image-url" class="fw-semibold">Image</label>
-                                    <input type="url" class="form-control" id="change-image-url"
+                                    <input required type="url" class="form-control" id="change-image-url"
                                         placeholder="https://images.pexels.com/photos/...">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-brand" class="fw-semibold">Brand</label>
-                                    <input type="text" class="form-control" id="change-brand" placeholder="Fender">
+                                    <input required type="text" class="form-control" id="change-brand" placeholder="Fender">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-price" class="fw-semibold">Price</label>
-                                    <input type="number" class="form-control" id="change-price" placeholder="3000€">
+                                    <input required type="number" class="form-control" id="change-price" placeholder="3000€">
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="change-description" class="fw-semibold">Description</label>
-                                    <textarea type="text" class="form-control" id="change-description"
+                                    <textarea required type="text" class="form-control" id="change-description"
                                         placeholder="Fender Limited Edition Lightweight..." rows="3"
                                         cols="33"></textarea>
                                 </div>
