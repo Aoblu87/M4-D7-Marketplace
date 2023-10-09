@@ -8,10 +8,7 @@ main{
 }
 
 
-#favorite-unsaved:hover {
-    background-color: grey;
 
-}
 
 #favorite-saved {
     display: block;
