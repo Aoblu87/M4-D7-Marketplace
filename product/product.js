@@ -52,7 +52,7 @@ function displayProduct(data) {
                     </div>
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img class="img-fluid" src="${data.imageUrl}" alt="${data.title}">
+                            <img class="img-fluid product-image" src="${data.imageUrl}" alt="${data.title}">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

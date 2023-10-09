@@ -86,7 +86,7 @@ function displayResult(data) {
                                         <p class="text-justify text-truncate para mb-0">${description}<br><br></p>
                                     </div>
                                     <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                                         <div class="d-flex flex-row align-items-center">
+                                         <div class="d-flex flex-row align-items-center justify-content-end">
                                             <h4 class="mr-1">${price}€</h4>
                                         </div>
                                         <div class="d-flex flex-column mt-4">
