@@ -73,7 +73,7 @@ async function getProducts() {
         const response = await fetch("https://striveschool-api.herokuapp.com/api/product/", {
 
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM0MTQ0YWJlNDYzZTAwMTgzZTc4MjQiLCJpYXQiOjE2OTc5MTE4ODMsImV4cCI6MTY5OTEyMTQ4M30.vhvrrAJyKPhbzKEH-8XJveo2u4d4n0lXktpoV2A5YuE"
             }
         })
 
@@ -131,7 +131,7 @@ async function addProduct(event) {
         method: "POST",
         headers: {
             "Content-type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM0MTQ0YWJlNDYzZTAwMTgzZTc4MjQiLCJpYXQiOjE2OTc5MTE4ODMsImV4cCI6MTY5OTEyMTQ4M30.vhvrrAJyKPhbzKEH-8XJveo2u4d4n0lXktpoV2A5YuE"
         },
         body: JSON.stringify({
             name: title.value,
@@ -197,7 +197,7 @@ async function changeProduct(event) {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM0MTQ0YWJlNDYzZTAwMTgzZTc4MjQiLCJpYXQiOjE2OTc5MTE4ODMsImV4cCI6MTY5OTEyMTQ4M30.vhvrrAJyKPhbzKEH-8XJveo2u4d4n0lXktpoV2A5YuE"
         },
         body: JSON.stringify({
             _id: idItem.innerHTML,
@@ -250,7 +250,7 @@ async function deleteProduct(id) {
         method: "DELETE",
         headers: {
 
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTkzYjk2OTNhMDAwMThiOWRlYjkiLCJpYXQiOjE2OTYyNjI0NTksImV4cCI6MTY5NzQ3MjA1OX0.zDkQ9wBotUv_FGzLQHZSRMthIEqAPb40vnYwaa5RBL4"
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTM0MTQ0YWJlNDYzZTAwMTgzZTc4MjQiLCJpYXQiOjE2OTc5MTE4ODMsImV4cCI6MTY5OTEyMTQ4M30.vhvrrAJyKPhbzKEH-8XJveo2u4d4n0lXktpoV2A5YuE"
         }
 
     })
