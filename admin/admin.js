@@ -223,7 +223,7 @@ async function changeProduct(event) {
         displayProducts(data)
         alert('Successfully added!')
 
-        for (const field of [idItem, changeTitle, changePrice, changeImageUrl, changeDescription]) {
+        for (const field of [idItem, changeTitle, changePrice, changeImageUrl, changeDescription, changeBrand]) {
             field.value = ''
         }
     } else {
